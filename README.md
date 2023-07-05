@@ -199,7 +199,7 @@
       <br><br> 
 - 회원 도메인 설계
   <br><br>
-  ![img.png](image/도메인 협력 관계.png)
+  ![도메인 협력 관계.png](image%2F%EB%8F%84%EB%A9%94%EC%9D%B8%20%ED%98%91%EB%A0%A5%20%EA%B4%80%EA%B3%84.png)
 <br><br>
   ![img.png](image/다이어그램.png)
   <br><br>
@@ -229,7 +229,7 @@
     - 할인 정책은 모든 VIP는 1000원을 할인해주는 고정 금액 할인을 적용해달라. (나중에 변경 될 수 있다.)
     - 할인 정책은 변경 가능성이 높다. 회사의 기본 할인 정책을 아직 정하지 못했고, 오픈 직전까지 고민을 미루고 싶다. 최악의 경우 할인을 적용하지 않을 수도 있다. (미확정)
       <br><br>
-    ![img.png](image/주문 도메인 협력,역할,책임.png)
+    ![주문 도메인 협력,역할,책임.png](image%2F%EC%A3%BC%EB%AC%B8%20%EB%8F%84%EB%A9%94%EC%9D%B8%20%ED%98%91%EB%A0%A5%2C%EC%97%AD%ED%95%A0%2C%EC%B1%85%EC%9E%84.png)
       <br><br>
     1. **주문 생성**: 클라이언트는 주문 서비스에 주문 생성을 요청한다.
     2. **회원 조회**: 할인을 위해서는 회원 등급이 필요하다. 그래서 주문 서비스는 회원 저장소에서 회원을 조회한다.
@@ -238,23 +238,23 @@
        <br><br>
     - 참고: 실제로는 주문 데이터를 DB에 저장하겠지만, 예제가 너무 복잡해질 수 있어서 생략하고, 단순히 주문 결과를 반환한다.
     <br><br>
-  ![img.png](image/주문 도메인 전체.png)
+    ![주문 도메인 전체.png](image%2F%EC%A3%BC%EB%AC%B8%20%EB%8F%84%EB%A9%94%EC%9D%B8%20%EC%A0%84%EC%B2%B4.png)
     <br><br>
   - **역할과 구현을 분리**해서 자유롭게 구현 객체를 조립할 수 있게 설계했다. 덕분에 회원 저장소는 물론이고, 할인 정책도 유연하게 변경할 수 있다.
     <br><br>
   - 주문 도메인 클래스 다이어그램
     <br><br>
-    ![img.png](image/주문 도메인 클래스 다이어그램.png)
+    ![주문 도메인 클래스 다이어그램.png](image%2F%EC%A3%BC%EB%AC%B8%20%EB%8F%84%EB%A9%94%EC%9D%B8%20%ED%81%B4%EB%9E%98%EC%8A%A4%20%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8.png)
     <br><br>
   - 주문 도메인 객체 다이어그램1
     <br><br>
-    ![img.png](image/주문 도메인 객체 다이어그램1.png)
+    ![주문 도메인 객체 다이어그램1.png](image%2F%EC%A3%BC%EB%AC%B8%20%EB%8F%84%EB%A9%94%EC%9D%B8%20%EA%B0%9D%EC%B2%B4%20%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A81.png)
     <br><br>
     - 회원을 메모리에서 조회하고, 정액 할인 정책(고정 금액)을 지원해도 주문 서비스를 변경하지 않아도 된다.
     - 역할들의 협력 관계를 그대로 재사용할 수 있다.
   - 주문 도메인 객체 다이어그램2
     <br><br>
-    ![img.png](image/주문 도메인 객체 다이어그램2.png)
+    ![주문 도메인 객체 다이어그램2.png](image%2F%EC%A3%BC%EB%AC%B8%20%EB%8F%84%EB%A9%94%EC%9D%B8%20%EA%B0%9D%EC%B2%B4%20%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A82.png)
     <br><br>
     - 회원을 메모리가 아닌 실제 DB에서 조회하고, 정률 할인 정책(주문 금액에 따라 % 할인)을 지원해도 주문 서비스를 변경하지 않아도 된다.
     - 협력 관계를 그대로 재사용할 수 있다.
@@ -272,7 +272,7 @@
   - 이번에는 주문한 금액의 %를 할인해주는 새로운 정률 할인 정책을 추가하자.
   - RateDiscountPolicy 추가
   <br><br>
-    ![img.png](image/RateDiscountPolicy 추가.png)
+    ![RateDiscountPolicy 추가.png](image%2FRateDiscountPolicy%20%EC%B6%94%EA%B0%80.png)
     <br><br>
 - 새로운 할인 정책 적용과 문제점
   - 할인 정책을 애플리케이션에 적용해보자.
@@ -295,11 +295,11 @@
     <br><br>
     - 왜 클라이언트 코드를 변경해야 할까?
       <br><br>
-      ![img.png](image/기대했던 그리고 실제 의존관계.png)
+      ![기대했던 그리고 실제 의존관계.png](image%2F%EA%B8%B0%EB%8C%80%ED%96%88%EB%8D%98%20%EA%B7%B8%EB%A6%AC%EA%B3%A0%20%EC%8B%A4%EC%A0%9C%20%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84.png)
       <br><br>
       - 정책 변경
         <br><br>
-        ![img.png](image/정책변경.png)
+        ![정책변경.png](image%2F%EC%A0%95%EC%B1%85%EB%B3%80%EA%B2%BD.png)
         <br><br>
   - 어떻게 문제를 해결할 수 있을까?
     - 클라이언트 코드인 OrderServiceImpl 은 DiscountPolicy 의 인터페이스 뿐만 아니라 구체 클래스도 함께 의존한다.
@@ -307,7 +307,7 @@
     - DIP 위반 추상에만 의존하도록 변경(인터페이스에만 의존)
     - DIP를 위반하지 않도록 인터페이스에만 의존하도록 의존관계를 변경하면 된다.
        <br><br>
-      ![img.png](image/인터페이스만 의존하도록 설계변경.png)
+      ![인터페이스만 의존하도록 설계변경.png](image%2F%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EB%A7%8C%20%EC%9D%98%EC%A1%B4%ED%95%98%EB%8F%84%EB%A1%9D%20%EC%84%A4%EA%B3%84%EB%B3%80%EA%B2%BD.png)
       <br><br>
     - 인터페이스에만 의존하도록 설계와 코드를 변경했다.
     - 그런데 구현체가 없는데 어떻게 코드를 실행할 수 있을까?
