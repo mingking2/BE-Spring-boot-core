@@ -397,6 +397,22 @@
       - `AppConfig`를 보면 역할과 구현 클래스가 한눈에 들어온다. 애플리케이션 전체 구성이 어떻게 되어있는지 빠르게 파악할 수 있다.
         <br><br>
 - 새로운 구조와 할인 정책 적용
+  - 처음으로 돌아가서 정액 할인 정책을 정률% 할인 정책으로 변경해보자.
+  - FixDiscountPolicy -> RateDiscountPolicy
+  - 어떤 부분만 변경하면 되겠는가?
+    <br><br>
+    AppConfig의 등장으로 애플리케이션이 크게 사용 영역과, 객체를 생성하고 구성(Configuration)하는 영역으로 분리되었다.
+    <br><br>
+    ![그림 - 사용, 구성의 분리.png](image%2F%EA%B7%B8%EB%A6%BC%20-%20%EC%82%AC%EC%9A%A9%2C%20%EA%B5%AC%EC%84%B1%EC%9D%98%20%EB%B6%84%EB%A6%AC.png)
+    <br><br>
+    ![그림 - 할인 정책의 변경.png](image%2F%EA%B7%B8%EB%A6%BC%20-%20%ED%95%A0%EC%9D%B8%20%EC%A0%95%EC%B1%85%EC%9D%98%20%EB%B3%80%EA%B2%BD.png)
+    <br><br>
+  - `FixDiscountPolicy` -> `RateDiscountPolicy`로 변경해도 구성 영역만 영향을 받고, 사용 영역은 전혀 영향을 받지 않는다.
+    <br><br>
+  - 할인 정책 변경 구성 코드
+    - `AppConfig`에서 할인 정책 역할을 담당하는 구현을 `FixDiscountPolicy` -> `RateDiscountPolicy` 객체로 변경했다.
+    - 이제 할인 정책을 변경해도, 애플리케이션의 구성 역할을 담당하는 AppConfig만 변경하면 된다. 클라이언트 코드인 `OrderServiceImpl`를 포함해서 **사용 영역**의 어떤 코드도 변경할 필요가 없다.
+    - **구성 영역**은 당연히 변경된다. 구성 역할을 담당하는 AppConfig를 애플리케이션이라는 공연의 기획자로 생각하자. 공연 기획자는 공연 참여자인 구현 객체들을 모두 알아야 한다.
   <br><br>
 - 전체 흐름 정리
   <br><br>
