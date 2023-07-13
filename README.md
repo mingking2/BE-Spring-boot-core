@@ -1,5 +1,7 @@
 # 스프링 핵심 원리 - 기본편
 
+<img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> 
+
 ## 목차
 - [1. 객체 지향 설계와 스프링](#1-객체-지향-설계와-스프링)
 - [2. 스프링 핵심 원리 이해1 - 예제 만들기](#2-스프링-핵심-원리-이해1---예제-만들기)
