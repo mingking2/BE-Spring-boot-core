@@ -597,6 +597,22 @@
       - `ROLE_APPLICATION` : 일반적으로 사용자가 정의한 빈
       - `ROLE_INFRASTRUCTURE` : 스프링이 내부에서 사용하는 빈
         <br><br>
+      
+- 스프링 빈 조회 기본
+  - 스프링 컨테이너에서 스프링 빈을 찾는 가장 기본적인 조회 방법
+    - `ac.getBean(빈이름, 타입)`
+    - `ac.getBean(타입)`
+  - 조회 대상 스프링 빈이 없으면 예외 발생
+    - `NoSuchBeanDefinitionException: No bean named 'xxxxx' available`
+  - 참고: 구체 타입으로 조회하면 변경시 유연성이 떨어진다.
+    <br><br>
+
+- 스프링 빈 조회 - 동일한 타입이 둘 이상
+  - 타입으로 조회시 같은 타입의 스프링 빈이 둘 이상이면 오류가 발생한다. 이때는 빈 이름을 지정하자.
+  - `ac.getBeanOfType()`을 사용하면 해당 타입의 모든 빈을 조회할 수 있다.
+    <br><br>
+
+
 ## 5. 싱글톤 컨테이너
 ## 6. 컴포넌트 스캔
 ## 7. 의존관계 자동 주입
