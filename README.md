@@ -618,6 +618,37 @@
   - 부모 타입으로 조회하면, 자식 타입도 함께 조회한다.
   - 그래서 모든 자바 객체의 최고 부모인 `Object`타입으로 조회하면, 모든 스프링 빈을 조회한다.
   ![트리.png](image%2F%ED%8A%B8%EB%A6%AC.png)
+    <br><br>
+
+- BeanFactory와 ApplicationContext
+![BeanFactory와 ApplicationContext.png](image%2FBeanFactory%EC%99%80%20ApplicationContext.png)
+  - **BeanFactory**
+    - 스프링 컨테이너의 최상위 인터페이스이다.
+    - 스프링 빈을 관리하고 조회하는 역할을 담당한다.
+    - `getBean()`을 제공한다.
+    - 지금까지 우리가 사용했던 대부분의 기능은 BeanFactory가 제공하는 기능이다.
+      <br><br>
+  - **ApplicationContext**
+    - BeanFactory 기능을 모두 상속받아서 제공한다.
+    - 빈을 관리하고 검색하는 기능을 BeanFactory가 제공해주는데, 그러면 둘의 차이가 뭘까?
+    - 애플리케이션을 개발할 때는 빈을 관리하고 조회하는 기능은 물론이고, 수많은 부가기능이 필요하다.
+      <br><br>
+    ![ApplicationContext가 제공하는 부가기능.png](image%2FApplicationContext%EA%B0%80%20%EC%A0%9C%EA%B3%B5%ED%95%98%EB%8A%94%20%EB%B6%80%EA%B0%80%EA%B8%B0%EB%8A%A5.png)
+      - 메시지소스를 활용한 국제화 기능
+        - 예를 들어서 한국에서 들어오면 한국어로, 영어권에서 들어오면 영어로 출력
+      - 환경변수
+        - 로컬, 개발, 운영 등을 구분해서 처리
+      - 애플리케이션 이벤트
+        - 이벤트를 발행하고 구독하는 모델을 편리하게 지원
+      - 편리한 리소스 조회
+        - 파일, 클래스패스, 외부 등에서 리소스를 편리하게 조회
+          <br><br>
+  - 정리
+    - ApplicationContext는 BeanFactory의 기능을 상속받는다.
+    - ApplicationContext는 빈 관리기능 + 편리한 부가 기능을 제공한다.
+    - BeanFactory를 직접 사용할 일은 거의 없다. 부가기능이 포함된 ApplicationContext를 사용한다.
+    - BeanFactory나 ApplicationContext를 스프링 컨테이너라 한다.
+      <br><br>
 
 ## 5. 싱글톤 컨테이너
 ## 6. 컴포넌트 스캔
