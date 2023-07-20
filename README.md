@@ -649,7 +649,7 @@
     - BeanFactory를 직접 사용할 일은 거의 없다. 부가기능이 포함된 ApplicationContext를 사용한다.
     - BeanFactory나 ApplicationContext를 스프링 컨테이너라 한다.
       <br><br>
-
+      <br><br>
 - 다양한 설정 형식 지원 - 자바 코드, XML
   - 스프링 컨테이너는 다양한 형식의 설정 정보를 받아드릴 수 있게 유연하게 설계되어 있다.
     - 자바 코드, XML, Groovy 등등
@@ -668,6 +668,7 @@
     <br><br>
     - xml 기반의 `appConfig.xml`스프링 설정 정보와 자바 코드로 된 `AppConfig.java`설정 정보를 비교해보면 거의 비슷하다는 것을 알 수 있다.
     - xml 기반으로 설정하는 것은 최근에 잘 사용하지 않으므로 이정도로 마무리 하고, 필요하면 스프링 공식 레퍼런스 문서를 확인하자.
+      <br><br>
       <br><br>
 - 스프링 빈 설정 메타 정보 : BeanDefinition
   - 스프링은 어떻게 이런 다양한 설정 형식을 지원하는 것일까? 그 중심에는 `BeanDefiniton`이라는 추상화가 있다.
