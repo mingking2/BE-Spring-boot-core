@@ -1094,7 +1094,7 @@ public class AutoAppConfig {
 > 남기고 유지하기 위해서 이 방법을 선택했다.
 
 <br><br>
-컴포넌트 스캔은 이름 그래도 `@Component`애노테이션이 붙은 클래스를 스캔해서 스프링 빈으로 등록한다.
+컴포넌트 스캔은 이름 그대로 `@Component`애노테이션이 붙은 클래스를 스캔해서 스프링 빈으로 등록한다.
 `@Component`를 붙여주자.
 
 > 참고: `@Configuration`이 컴포넌트 스캔의 대상이 된 이유도 `@Configuration`소스코드를 열어보면
