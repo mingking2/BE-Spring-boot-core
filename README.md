@@ -1067,7 +1067,7 @@ memberRepository = hello.core.member.MemoryMemberRepository@5k132213
 - 그래서 스프링은 설정 정보가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔이라는 기능을 제공한다.
 - 또 의존관계도 자동으로 주입하는 `@Autowired`라는 기능도 제공한다.
 
-코드로 컴포넌트 스캔과 의존관계 자동 중입을 알아보자.
+코드로 컴포넌트 스캔과 의존관계 자동 주입을 알아보자.
 
 먼저 기존 AppConfig.java는 과거 코드와 테스트를 유지하기 위해 남겨두고, 새로운 AutoAppConfig.java를 만들자.
 ```java
