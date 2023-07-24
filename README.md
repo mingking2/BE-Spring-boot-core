@@ -813,6 +813,86 @@
 
 <br><br>
 <br><br>
+### 싱글톤 방식의 주의점
+- 싱글톤 패턴이든, 스프링 같은 싱글톤 컨테이너를 사용하든, 객체 인스턴스를 하나만 생성해서 공유하는 싱글톤 방식은 여러 클라이언트가 하나의 같은 객체 인스턴스를 공유하기 때문에 싱글톤 객체는 상태를 유지하게 설계하면 안된다.
+- 무상태(stateless)로 설계해야 한다!
+  - 특정 클라이언트에 의존적인 필드가 있으면 안된다.
+  - 특정 클라이언트가 값을 변경할 수 있는 필드가 있으면 안된다.
+  - 가급적 읽기만 가능해야 한다.
+  - 필드 대신에 자바에서 공유되지 않는, 지역변수, 파라미터, ThreadLocal 등을 사용해야 한다.
+- 스프링 빈의 필드에 공유 값을 설정하면 정말 큰 장애가 발생할 수 있다!
+  <br><br>
+```java
+class StatefulServiceTest {
+
+    @Test
+    void statefulServiceSingleton() {
+        ApplicationContext ac = new AnnotationConfigApplicationContext(TestConfig.class);
+        StatefulService statefulService1 = ac.getBean(StatefulService.class);
+        StatefulService statefulService2 = ac.getBean(StatefulService.class);
+
+        //ThreadA: A사용자 10000원 주문
+        statefulService1.order("userA", 10000);
+        //ThreadB: B사용자 20000원 주문
+        statefulService2.order("userB", 20000);
+
+        //ThreadA: 사용자A 주문 금액 조회
+        int price = statefulService1.getPrice();
+        System.out.println("price = " + price);
+
+        Assertions.assertThat(statefulService1.getPrice()).isEqualTo(20000);
+    }
+
+    static class TestConfig {
+
+        @Bean
+        public StatefulService statefulService() {
+            return new StatefulService();
+        }
+    }
+
+}
+```
+- 최대한 단순히 설명하기 위해, 실제 쓰레드는 사용하지 않았다.
+- ThreadA가 사용자A 코드를 호출하고 ThreadB가 사용자B 코드를 호출한다 가정하자.
+- `StatefulService`의 `price`필드는 공유되는 필드인데, 특정 클라이언트가 값을 변경한다.
+- 사용자A의 주문금액은 10000원이 되어야 하는데, 20000원이라는 결과가 나왔다.
+- 실무에서 이런 경우를 종종 보는데, 이로인해 정말 해결하기 어려운 큰 문제들이 터진다.(몇년에 한번씩 꼭 만난다.)
+- 진짜 공유필드는 조심해야 한다! 스프링 빈은 항상 무상태(stateless)로 설계하자.
+  <br><br>
+  <br><br>
+### @Configuration과 싱글톤
+```java
+@Configuration
+public class AppConfig {
+    
+    @Bean
+    public MemberService memberService() {
+        return new MemberServiceImpl(memberRepository());
+    }
+    
+    @Bean
+    public OrderService orderService() {
+        return new OrderServiceImpl(
+                    memberRepository(),
+                    discountPolicy());
+    }
+    
+    @Bean
+    public MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
+    }
+    ...
+}
+```
+- memberService 빈을 만드는 코드를 보면 `memberRepository()`를 호출한다.
+  - 이 메서드를 호출하면 `new MemoryMemberRepository()`를 호출한다.
+- orderService 빈을 만드는 코드도 동일하게 `memberRepository()`를 호출한다.
+  - 이 메서드를 호출하면 `new MemoryMemberRepository()`를 호출한다.
+  <br>
+  결과적으로 각각 다른 2개의 `MemoryMemberRepository`가 생성되면서 싱글톤이 깨지는 것처럼 보이낟.
+  스프링 컨테이너는 이 문제를 어떻게 해결할까?
+
 ## 6. 컴포넌트 스캔
 ## 7. 의존관계 자동 주입
 ## 8. 빈 생명주기 콜백
